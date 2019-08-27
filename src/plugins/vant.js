@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import {
+  Cell, CellGroup,
+  Tag,
+  Card,
   Grid, GridItem,
   Toast,
   Swipe, SwipeItem,
@@ -9,6 +12,9 @@ import {
 } from 'vant'
 
 Vue
+  .use(Cell).use(CellGroup)
+  .use(Tag)
+  .use(Card)
   .use(Grid).use(GridItem)
   .use(Swipe).use(SwipeItem)
   .use(Tabbar).use(TabbarItem)

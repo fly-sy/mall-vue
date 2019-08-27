@@ -7,6 +7,8 @@ import Home from '@/views/home'
 import Friends from '@/views/friends'
 import Cart from '@/views/cart'
 import Search from '@/views/search'
+import NewsList from '@/views/home/news/newslist'
+import NewsInfo from '@/views/home/news/newsinfo'
 
 Vue.use(Router)
 
@@ -27,6 +29,14 @@ export default new Router({
     {
       path: '/search',
       component: Search
+    },
+    {
+      path: '/home/newslist',
+      component: NewsList
+    },
+    {
+      path: '/home/newsinfo/:id',
+      component: NewsInfo
     }
     // {
     //   path: '/about',

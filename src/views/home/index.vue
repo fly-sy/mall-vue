@@ -1,14 +1,21 @@
 <template>
   <div class="home">
-    <van-swipe :autoplay="3000" indicator-color="white" class="my-swipe">
-      <van-swipe-item class="item" v-for="item in lunbolist" :key="item.id">
-        <img :src="item.img" alt />
-      </van-swipe-item>
-    </van-swipe>
-
+    <div style="width:375px;overflow:hidden;">
+      <van-swipe :autoplay="3000" indicator-color="white" class="my-swipe">
+        <van-swipe-item class="item" v-for="item in lunbolist" :key="item.id">
+          <img :src="item.img" alt />
+        </van-swipe-item>
+      </van-swipe>
+    </div>
     <van-grid :column-num="3" class="my-grid">
       <!-- props 给子组件传递 数据 -->
-      <van-grid-item v-for="grid in grids" :key="grid.id" :text="grid.title" props="grid">
+      <van-grid-item
+        v-for="grid in grids"
+        :key="grid.id"
+        :text="grid.title"
+        props="grid"
+        :to="grid.to"
+      >
         <template slot="icon">
           <img :src="grid.src" alt />
         </template>
