@@ -26,7 +26,9 @@ git reset --hard commit_id   代码回退
 
 合并
 
-git merge 分支名称      要确保你是在master 分支上操作
+git merge 分支名称      要确保你是在master 分支上操作 当前的合并只是合并了本地的
+
+git push  提交到远程仓库
 
 删除
 
