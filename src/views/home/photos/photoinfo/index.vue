@@ -1,18 +1,23 @@
 <template>
-  <div class="newsinfo">
+  <div class="photoinfo">
     <!-- newsinfo-title  -->
-    <van-card :title="news.title">
+    <van-card :title="imgs.title">
       <div slot="price">
-        <span class="add_time">发表时间: {{news.add_time}}</span>
+        <span class="add_time">发表时间: {{imgs.add_time}}</span>
       </div>
-      <div slot="num">点击{{news.click}}次</div>
+      <div slot="num">点击{{imgs.click}}次</div>
     </van-card>
     <hr />
-    <!-- newsinfo-content  -->
-    <div class="newsinfo-body">{{news.content}}</div>
+    <div class="imgs-box">
+      <div class="imgs-thum">
+        <img :src="thum" alt v-for="(thum,index) in thums" :key="thum" @click="showImg(index)" />
+      </div>
+      <p class="desc">{{imgs.content}}</p>
+    </div>
 
     <!-- 评论组件 -->
     <comment :comments="comments" @postcomment="postcomment"></comment>
+
     <!-- 加载更多 -->
     <van-button plain type="danger" class="more" @click="getMore">{{hasFlag?'被掏空了':'加载更多'}}</van-button>
   </div>
@@ -22,28 +27,48 @@ import Comment from '@/components/comment'
 export default {
   data: () => ({
     id: '',
-    news: {},
-    pageindex: 0,
-    limit: 6,
+    imgs: {},
+    thums: [],
     comments: [],
-    hasFlag: false
+    hasFlag: false,
+    pageindex: 0,
+    limit: 6
   }),
   created() {
     this.id = this.$route.params.id
-    this.getNewsInfo()
+    this.getImgs()
+    this.getThumImages()
     this.getComments()
   },
   methods: {
-    async getNewsInfo() {
+    async getImgs() {
       const {
-        data: { message, status }
-      } = await this.$http.get(`api/getnew/${this.id}`)
+        data: { status, message }
+      } = await this.$http.get(`api/getimageInfo/${this.id}`)
       if (status !== 0) return this.$Toast(message)
-      this.news = message
-
-      // console.log(message)
+      this.imgs = message
     },
+    async getThumImages() {
+      const {
+        data: { status, message }
+      } = await this.$http.get(`api/getthumimages/${this.id}`)
+      if (status !== 0) return this.$Toast(message)
 
+      // 把对象中的图片过滤出来，存到一个新的数组中
+      let arr = []
+      message.forEach(item => {
+        if (item.src) {
+          arr.push(item.src)
+        }
+      })
+      this.thums = arr
+    },
+    showImg(startPosition) {
+      this.$ImagePreview({
+        images: this.thums,
+        startPosition
+      })
+    },
     async getComments() {
       // 节流
       if (this.hasFlag !== false) return
@@ -57,12 +82,13 @@ export default {
       console.log(count)
       // 计算出一个布尔值 用于逻辑控制
       this.hasFlag = this.pageindex * this.limit > count
-      console.log(this.comments)
+      // console.log(this.comments)
       // console.log(this.hasFlag)
     },
     getMore() {
       this.getComments()
     },
+
     async postcomment(data) {
       const {
         data: { message, status }
@@ -83,7 +109,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.newsinfo {
+.photoinfo {
   padding: 0 4px;
   .van-card {
     background-color: #fff;
@@ -101,6 +127,14 @@ export default {
     }
     .add_time {
       color: #226aff;
+    }
+  }
+  .imgs-thum {
+    display: flex;
+    justify-content: space-around;
+    img {
+      width: 100px;
+      height: 100px;
     }
   }
   .more {

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import {
+  ImagePreview,
   Lazyload,
   Tab, Tabs,
   Cell, CellGroup,
@@ -31,3 +32,4 @@ Vue
   .use(Button)
 
 Vue.prototype.$Toast = Toast
+Vue.prototype.$ImagePreview = ImagePreview

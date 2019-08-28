@@ -3,10 +3,15 @@
     <van-tabs @change="getImgs" animated>
       <van-tab v-for="cate in cates" :title="cate.title" :key="cate.id">
         <template v-if="imgs.length !==0">
-          <div v-for="img in imgs" :key="img.id" class="img-box">
+          <router-link
+            :to="'/home/photoinfo/'+img.id"
+            v-for="img in imgs"
+            :key="img.id"
+            class="img-box"
+          >
             <!-- <img :src="img.img_url" alt /> -->
             <img v-lazy="img.img_url" />
-          </div>
+          </router-link>
         </template>
         <div v-else>暂无数据</div>
       </van-tab>
