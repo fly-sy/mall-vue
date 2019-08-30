@@ -4,6 +4,7 @@ import router from './router'
 import './plugins/vant.js'
 
 import axios from 'axios'
+import store from './store'
 
 import moment from 'moment'
 // 配置根路径
@@ -18,5 +19,6 @@ Vue.filter('datefmt', (str, arg2 = "'YYYY-MM-DD HH:mm:ss'") => {
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

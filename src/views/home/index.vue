@@ -50,7 +50,7 @@ export default {
       } = await this.$http.get('api/grids')
       if (status !== 0) return this.$Toast('获取grids失败')
       this.grids = message
-      console.log(message)
+      // console.log(message)
     }
   },
   components: {
