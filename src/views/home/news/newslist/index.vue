@@ -26,7 +26,7 @@ export default {
       } = await this.$http.get('api/getnewslist')
       if (status !== 0) return this.$Toast('获取新闻列表信息数据失败')
       this.newslist = message
-      console.log(message)
+      // console.log(message)
     }
   }
 }

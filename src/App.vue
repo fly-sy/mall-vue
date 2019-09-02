@@ -2,7 +2,9 @@
   <div class="app">
     <van-nav-bar title="长沙前端-1903" left-text="返回" left-arrow @click-left="goBack" fixed />
     <transition name="fly">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </transition>
     <van-tabbar v-model="active">
       <van-tabbar-item icon="home-o" to="/home">home</van-tabbar-item>
@@ -20,7 +22,7 @@ export default {
   created() {},
   methods: {
     goBack() {
-      // console.log('left')
+      console.log('left')
       this.$router.go(-1)
     }
   }

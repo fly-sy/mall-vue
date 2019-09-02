@@ -79,7 +79,7 @@ export default {
       if (status !== 0) return this.$Toast(message)
       //  message 获取到某一页的数据
       this.comments = this.comments.concat(message)
-      console.log(count)
+      // console.log(count)
       // 计算出一个布尔值 用于逻辑控制
       this.hasFlag = this.pageindex * this.limit > count
       // console.log(this.comments)
@@ -94,7 +94,7 @@ export default {
         data: { message, status }
       } = await this.$http.post(`api/postcomment/${this.id}`, { content: data })
       if (status !== 0) return this.$Toast('发表评论失败')
-      console.log(message)
+      // console.log(message)
       // 自己模拟一个数据添加到评论的首位达到页面刷新效果
       this.comments.unshift({
         user_name: '匿名用户',

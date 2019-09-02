@@ -1,18 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// @ 相当一个绝对路径 src  官方帮我们配置了 别名
-// import Home from './views/Home.vue'
-import Home from '@/views/home'
-import Friends from '@/views/friends'
-import Cart from '@/views/cart'
-import Search from '@/views/search'
-import NewsList from '@/views/home/news/newslist'
-import NewsInfo from '@/views/home/news/newsinfo'
-import PhotoList from '@/views/home/photos/photolist'
-import PhotoInfo from '@/views/home/photos/photoinfo'
-import GoodsList from '@/views/home/goods/goodslist'
-import GoodsInfo from '@/views/home/goods/goodsinfo'
+// import GoodsList from '@/views/home/goods/goodslist'
+const GoodsList = () => import(/* webpackChunkName: "goods" */ '@/views/home/goods/goodslist')
+// import GoodsInfo from '@/views/home/goods/goodsinfo'
+const GoodsInfo = () => import(/* webpackChunkName: "goods" */ '@/views/home/goods/goodsinfo')
+
+// import PhotoList from '@/views/home/photos/photolist'
+const PhotoList = () => import(/* webpackChunkName: "photos" */ '@/views/home/photos/photolist')
+// import PhotoInfo from '@/views/home/photos/photoinfo'
+const PhotoInfo = () => import(/* webpackChunkName: "photos" */ '@/views/home/photos/photoinfo')
+
+// import NewsList from '@/views/home/news/newslist'
+const NewsList = () => import(/* webpackChunkName: "news" */ '@/views/home/news/newslist')
+// import NewsInfo from '@/views/home/news/newsinfo'
+const NewsInfo = () => import(/* webpackChunkName: "news" */ '@/views/home/news/newsinfo')
+
+// import Cart from '@/views/cart'
+const Cart = () => import(/* webpackChunkName: "tabs" */ '@/views/cart')
+// import Search from '@/views/search'
+const Search = () => import(/* webpackChunkName: "tabs" */ '@/views/search')
+// import Home from '@/views/home'
+const Home = () => import(/* webpackChunkName: "tabs" */ '@/views/home')
+// import Friends from '@/views/friends'
+const Friends = () => import(/* webpackChunkName: "tabs" */ '@/views/friends')
 
 Vue.use(Router)
 

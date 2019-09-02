@@ -154,7 +154,7 @@ export default {
         data: { status, message }
       } = await this.$http.get(`api/getthumimages/${id}`)
       if (status !== 0) return this.$Toast(message)
-      console.log(message)
+      // console.log(message)
       this.thums = message
     },
     async getGoodsInfo() {
