@@ -6,6 +6,9 @@ import './plugins/vant.js'
 import axios from 'axios'
 import store from './store'
 
+// import './config/rem.js'
+import 'lib-flexible'
+
 import moment from 'moment'
 // 配置根路径
 axios.defaults.baseURL = 'http://localhost:5000/'

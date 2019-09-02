@@ -4,7 +4,7 @@
       <div class="ball" v-show="isShow" id="ball" ref="ballRef"></div>
     </transition>
     <div class="panel">
-      <van-swipe indicator-color="white" style="width:360px;overflow: hidden" class="my-swipe">
+      <van-swipe indicator-color="white" class="my-swipe">
         <van-swipe-item class="item" v-for="thum in thums" :key="thum.id">
           <img :src="thum.src" alt />
         </van-swipe-item>
@@ -230,6 +230,8 @@ export default {
     // transform: translate(150px, 280px);
   }
   .my-swipe {
+    width: 360px;
+    overflow: hidden;
     padding: 10px;
     height: 150px;
     img {

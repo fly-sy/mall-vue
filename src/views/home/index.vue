@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div style="width:375px;overflow:hidden;">
+    <div class="auto-w">
       <van-swipe :autoplay="3000" indicator-color="white" class="my-swipe">
         <van-swipe-item class="item" v-for="item in lunbolist" :key="item.id">
           <img :src="item.img" alt />
@@ -60,6 +60,10 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
+  .auto-w {
+    width: 375px;
+    overflow: hidden;
+  }
   .my-swipe {
     height: 200px;
     .item {
